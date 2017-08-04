@@ -10,7 +10,12 @@ public class NumberWizard : MonoBehaviour {
 	int guess = 500;
 
 	void Start () {
+		StartGame();
+	}
+
+	void StartGame () {
 		max = max + 1;
+
 		print ("Welcome to Number Wizard");
 		print ("Pick a number between " + min + " and " + max + ", but don't tell me!");
 
@@ -18,21 +23,27 @@ public class NumberWizard : MonoBehaviour {
 		print ("Up = higher, down = lower, return = equal");
 	}
 
-	
+	void NextGuess () {
+		guess = (max + min) / 2;
+		print ("Now is your number higher or lower than " + guess + "?");
+	}
+
+	void WinGame () {
+		print ("Your number is " + guess + ". I won!");
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.UpArrow)) {
 			print ("Number is higher than " + guess + ".");
 			min = guess;
-			guess = (max + min) / 2;
-			print ("Now is your number higher or lower than " + guess + "?");
+			NextGuess();
 		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
 			print ("Number is lower than " + guess + ".");
 			max = guess;
-			guess = (max + min) / 2;
-			print ("Now is your number higher or lower than " + guess + "?");
+			NextGuess();
 		} else if (Input.GetKeyDown (KeyCode.Return)) {
-			print ("Your number is " + guess + ". I won!");
+			WinGame();
 		} 
 	}
 }
