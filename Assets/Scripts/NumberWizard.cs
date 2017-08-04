@@ -5,22 +5,27 @@ using UnityEngine;
 public class NumberWizard : MonoBehaviour {
 
 	// Use this for initialization
-	int max = 1000;
-	int min = 1;
-	int guess = 500;
+	int max;
+	int min;
+	int guess;
 
 	void Start () {
 		StartGame();
 	}
 
 	void StartGame () {
-		max = max + 1;
+		max = 1000;
+		min = 1;
+		guess = 500;
 
+		print ("========================");
 		print ("Welcome to Number Wizard");
 		print ("Pick a number between " + min + " and " + max + ", but don't tell me!");
 
 		print ("Is the number higher, lower, or equal to " + guess + "?");
 		print ("Up = higher, down = lower, return = equal");
+
+		max = max + 1;
 	}
 
 	void NextGuess () {
@@ -30,6 +35,7 @@ public class NumberWizard : MonoBehaviour {
 
 	void WinGame () {
 		print ("Your number is " + guess + ". I won!");
+		StartGame();
 	}
 
 	// Update is called once per frame
