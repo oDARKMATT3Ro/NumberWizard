@@ -38,3 +38,4 @@ Email. info@imagitechstudios.com
 * NW07 Created game start screen
 * NW08 Setup start screen script functionality
 * NW09 Completed scene change functionality and GDD
+* NW10 Completed Number Wizard UI game scene

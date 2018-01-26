@@ -1,55 +1,59 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.UI;
 
-public class NumberWizard : MonoBehaviour {
+public class NumberWizard : MonoBehaviour
+{
+    // Use this for initialization
+    int max;
+    int min;
+    int guess;
+    public int maxGuessesAllowed = 5;
 
-	// Use this for initialization
-	int max;
-	int min;
-	int guess;
 
-	void Start () {
-		StartGame();
-	}
+    public Text text;
 
-	void StartGame () {
-		max = 1000;
-		min = 1;
-		guess = 500;
+    void Start()
+    {
+        StartGame();
+    }
 
-		print ("========================");
-		print ("Welcome to Number Wizard");
-		print ("Pick a number between " + min + " and " + max + ", but don't tell me!");
+    void StartGame()
+    {
+        max = 1000;
+        min = 1;
+        NextGuess();
 
-		print ("Is the number higher, lower, or equal to " + guess + "?");
-		print ("Up = higher, down = lower, return = equal");
+    }
 
-		max = max + 1;
-	}
+    public void GuessLower()
+    {
+        max = guess;
+        NextGuess();
+    }
 
-	void NextGuess () {
-		guess = (max + min) / 2;
-		print ("Now is your number higher or lower than " + guess + "?");
-	}
+    public void GuessHigher()
+    {
+        min = guess;
+        NextGuess();
+    }
 
-	void WinGame () {
-		print ("Your number is " + guess + ". I won!");
-		StartGame();
-	}
+    void NextGuess()
+    {
+        guess = Random.Range(min,max+1);
+        text.text = guess.ToString();
+        maxGuessesAllowed = maxGuessesAllowed - 1;
+        if (maxGuessesAllowed <= 0)
+        {
+            Application.LoadLevel("Win");
+        }
+    }
 
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.UpArrow)) {
-			print ("Number is higher than " + guess + ".");
-			min = guess;
-			NextGuess();
-		} else if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			print ("Number is lower than " + guess + ".");
-			max = guess;
-			NextGuess();
-		} else if (Input.GetKeyDown (KeyCode.Return)) {
-			WinGame();
-		} 
-	}
+    void WinGame()
+    {
+        print("Your number is " + guess + ". I won!");
+        StartGame();
+    }
+
 }
