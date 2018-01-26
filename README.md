@@ -36,4 +36,4 @@ Email. info@imagitechstudios.com
 
 ## Number Wizard UI Commit List
 * NW07 Created game start screen
-
+* NW08 Setup start screen script functionality
